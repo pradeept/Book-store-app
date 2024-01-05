@@ -1,0 +1,53 @@
+.nav_bar {
+  height: 5%;
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.5rem 2.5rem;
+}
+
+.link > a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: rgb(212, 212, 212);
+}
+
+.link > a:hover {
+  color: rgb(243, 243, 243);
+}
+
+.nav_links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav_heading {
+  color: white;
+  font-size: 2rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.active_link {
+  background-color: rgb(178, 145, 182);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active_link > mat-icon{
+  color: white;
+
+}
+
+.logout_btn {
+  margin-left: 2rem;
+  color: rgb(212, 212, 212);
+  cursor: pointer;
+}

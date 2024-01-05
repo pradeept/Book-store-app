@@ -1,0 +1,84 @@
+<h1>Address</h1>
+<!-- We can also pass ngForm instance as parameter unlike what we did in register/login page -->
+<form
+  #addressForm="ngForm"
+  (ngSubmit)="handleAddressSubmit(addressForm)"
+  class="address_form"
+>
+  <mat-form-field class="form_input">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      name="name"
+      type="text"
+      required
+      #name="ngModel"
+      ngModel
+      minlength="5"
+      [disabled]="addressForm.submitted"
+    />
+    <mat-error *ngIf="name.touched && name.errors !== null">
+      <ng-container *ngIf="name.errors['required']"
+        >This field is required</ng-container
+      >
+      <ng-container *ngIf="name.dirty && name.errors['minlength']"
+        >Name</ng-container
+      >
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form_input">
+    <mat-label>Address</mat-label>
+    <input
+      matInput
+      name="address"
+      type="text"
+      required
+      #address="ngModel"
+      ngModel
+      minlength="5"
+      [disabled]="addressForm.submitted"
+    />
+    <mat-hint>House No./ Ward No. / City</mat-hint>
+    <mat-error *ngIf="address.touched && address.errors !== null">
+      <ng-container *ngIf="address.errors['required']"
+        >This field is required</ng-container
+      >
+      <ng-container *ngIf="address.dirty && address.errors['minlength']"
+        >Address/Ward no./City</ng-container
+      >
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form_input">
+    <mat-label>Pincode</mat-label>
+    <input
+      matInput
+      name="pincode"
+      type="text"
+      required
+      #pincode="ngModel"
+      ngModel
+      minlength="6"
+      [disabled]="addressForm.submitted"
+    />
+    <mat-error *ngIf="pincode.touched && pincode.errors !== null">
+      <ng-container *ngIf="pincode.errors['required']"
+        >This field is required</ng-container
+      >
+      <ng-container *ngIf="pincode.dirty && pincode.errors['minlength']"
+        >ex: 587116, 560078 etc..</ng-container
+      >
+    </mat-error>
+  </mat-form-field>
+  <div>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      style="font-size: 1rem; width: 100%"
+      [disabled]="!hasItems || addressForm.invalid || addressForm.submitted"
+    >
+      Use
+    </button>
+  </div>
+  <small *ngIf="!hasItems">*Please add an item to cart to continue.</small>
+</form>

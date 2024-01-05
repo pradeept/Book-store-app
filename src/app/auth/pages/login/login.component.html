@@ -1,0 +1,53 @@
+<div class="container">
+  <form class="form" (ngSubmit)="onFormSubmitted()" #loginForm="ngForm">
+    <mat-form-field class="form_input">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        name="email"
+        type="email"
+        ngModel
+        required
+        #email="ngModel"
+        minlength="8"
+        email
+      />
+      <mat-error *ngIf="email.errors && email.errors['required']"
+        >This field is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="form_input">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        name="password"
+        type="password"
+        ngModel
+        required
+        #password="ngModel"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$&]).{8,16}$"
+      />
+      <mat-error *ngIf="password.errors !== null">
+        <ng-container *ngIf="password.errors['required']"
+          >This field is required</ng-container
+        >
+        <ng-container *ngIf="password.errors['pattern']"
+          >Password should be 8 characters long and should contain atleast 1
+          character in a-z, A-Z, 0-9 and @#$&</ng-container
+        >
+      </mat-error>
+    </mat-form-field>
+    <div class="form_controllers">
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        style="font-size: 1rem; width: 100%"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+      <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+  </form>
+</div>

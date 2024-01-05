@@ -1,0 +1,17 @@
+* {
+  font-family: sans-serif;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0 10%;
+}
+.cart_btn_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}

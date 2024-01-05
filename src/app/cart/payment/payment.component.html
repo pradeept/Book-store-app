@@ -1,0 +1,27 @@
+<h1>Payment</h1>
+
+<div *ngIf="hasItems; else cartEmpty">
+  <div *ngFor="let item of getCart()">
+    <div class="items_container">
+      <h4 class="item_name">{{ item.name }}</h4>
+      <h4 class="item_cost">{{ item.cost | currency : "INR" }}</h4>
+    </div>
+  </div>
+  <div class="total_container">
+    <p>Cart Total: {{ getCartTotal() | currency : "INR" }}</p>
+  </div>
+
+  <div>
+    <button
+      mat-button-raised
+      color="primary"
+      [disabled]="!hasItems"
+      (click)="handlePayment()"
+    >
+      Make Payment (stripe)
+    </button>
+  </div>
+</div>
+<ng-template #cartEmpty>
+  <h1>Cart is Empty!</h1>
+</ng-template>

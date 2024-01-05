@@ -1,0 +1,19 @@
+<h1 style="text-align: center; margin: 3rem; color: rgb(61, 61, 61)">Books</h1>
+
+<ul *ngIf="isShowing; else elseblock">
+  <ng-container *ngFor="let book of books; let i = index">
+    <app-book [book]="book"></app-book>
+  </ng-container>
+</ul>
+
+<div class="cart_btn_container">
+  <a
+    routerLink="/cart"
+    routerLinkActive="active_link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <button mat-raised-button color="primary">Go to Cart</button>
+  </a>
+</div>
+<!-- Below line of code should be removed later -->
+<ng-template #elseblock>Showing is set to false</ng-template>

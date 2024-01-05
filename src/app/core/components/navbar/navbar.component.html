@@ -1,0 +1,33 @@
+<nav class="nav_bar">
+  <h2 class="nav_heading">BOOK STORE</h2>
+  <div class="nav_links" *ngIf="this.authService.isLoggedIn">
+    <div class="link">
+      <a
+        routerLink="store"
+        routerLinkActive="active_link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><mat-icon aria-hidden="false">
+          <span class="material-symbols-outlined"> storefront </span>
+        </mat-icon>
+      </a>
+    </div>
+    <div class="link">
+      <a
+        routerLink="cart"
+        routerLinkActive="active_link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon
+          [matBadge]="getCartItemsLength()"
+          matBadgeColor="warn"
+          aria-hidden="false"
+          ><span class="material-symbols-outlined"> shopping_cart </span>
+        </mat-icon></a
+      >
+    </div>
+
+    <mat-icon aria-hidden="false" (click)="handleLogout()" class="logout_btn">
+      <span class="material-symbols-outlined"> logout </span>
+    </mat-icon>
+  </div>
+</nav>

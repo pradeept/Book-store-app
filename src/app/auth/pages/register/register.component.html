@@ -1,0 +1,115 @@
+<div class="container">
+  <form class="form" #registerForm="ngForm" (ngSubmit)="onFormSubmitted()">
+    <h1 style="text-align: center">REGISTER</h1>
+    <mat-form-field class="form_input">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        name="name"
+        type="text"
+        required
+        #name="ngModel"
+        ngModel
+        minlength="5"
+      />
+      <mat-error *ngIf="name.touched && name.errors !== null">
+        <ng-container *ngIf="name.errors['required']"
+          >This field is required</ng-container
+        >
+        <ng-container *ngIf="name.dirty && name.errors['minlength']"
+          >Minimum 5 characters</ng-container
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form_input">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        ngModel
+        name="email"
+        type="text"
+        required
+        email
+        #emailAddress="ngModel"
+      />
+      <mat-error *ngIf="emailAddress.touched && emailAddress.errors !== null">
+        <ng-container *ngIf="emailAddress.errors['required']">
+          This field is required
+        </ng-container>
+        <ng-container
+          *ngIf="emailAddress.dirty && emailAddress.errors['email']"
+        >
+          Please check the Email format
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form_input">
+      <mat-label>Contact Number</mat-label>
+      <input
+        matInput
+        ngModel
+        name="contactNumber"
+        type="text"
+        pattern="[0-9]{10,10}"
+        #contactNum="ngModel"
+      />
+      <mat-hint>*Do not include country code</mat-hint>
+      <mat-error *ngIf="contactNum.errors && contactNum.errors['pattern']"
+        >Should be 10 digits</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        ngModel
+        name="password"
+        type="password"
+        required
+        #password="ngModel"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$&]).{8,16}$"
+      />
+      <mat-error *ngIf="password.errors !== null">
+        <ng-container *ngIf="password.errors['required']"
+          >This field is required</ng-container
+        >
+        <ng-container *ngIf="password.errors['pattern']"
+          >Password should be 8 characters long and should contain atleast 1
+          character in a-z, A-Z, 0-9 and @#$&</ng-container
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        ngModel
+        name="confirmPassword"
+        type="password"
+        required
+        #confirmPass="ngModel"
+        [pattern]="password.value"
+      />
+      <mat-error *ngIf="confirmPass.errors !== null">
+        <ng-container *ngIf="confirmPass.errors['required']"
+          >This field is required</ng-container
+        >
+        <ng-container *ngIf="confirmPass.errors['patter']"
+          >Confirm password should be same as password</ng-container
+        >
+      </mat-error>
+    </mat-form-field>
+    <div class="form_controllers">
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        style="font-size: 1rem; width: 100%"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </form>
+</div>

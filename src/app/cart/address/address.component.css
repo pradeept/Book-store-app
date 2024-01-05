@@ -1,0 +1,13 @@
+/* Address section */
+
+.address_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+mat-form-field > input:disabled {
+  cursor: not-allowed;
+}

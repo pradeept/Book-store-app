@@ -1,0 +1,41 @@
+<main class="container">
+  <section class="cart_container">
+    <h1>Your cart</h1>
+    <div *ngIf="getCart().length === 0">
+      <p>cart is empty!</p>
+      <a
+        routerLink="/store"
+        routerLinkActive="active_link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <button mat-raised-button color="primary">
+          Go to store
+          <mat-icon aria-hidden="false">
+            <span class="material-symbols-outlined"> storefront </span>
+          </mat-icon>
+        </button>
+      </a>
+    </div>
+
+    <div *ngIf="getCart().length > 0">
+      <div *ngFor="let book of getCart()">
+        <mat-card>
+          <mat-card-content>
+            <mat-card-header
+              ><mat-card-title>{{ book.name }} </mat-card-title>
+              <mat-card-subtitle>{{
+                book.cost | currency : "INR"
+              }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+  <section class="address_container">
+    <app-address [hasItems]="hasItems"></app-address>
+  </section>
+  <section class="checkout_container">
+    <app-payment [hasItems]="hasItems"></app-payment>
+  </section>
+</main>
